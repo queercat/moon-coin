@@ -1,12 +1,25 @@
 import hre from "hardhat";
+import dotenv from "dotenv";
 
-const CONTRACT_NAME = "PUT_CONTRACT_NAME_HERE"
+dotenv.config();
+
+const { NAME, SYMBOL, DECIMALS, TOTAL_SUPPLY } = process.env as unknown as {
+  NAME: string;
+  SYMBOL: string;
+  DECIMALS: number;
+  TOTAL_SUPPLY: number;
+};
 
 const main = async () => {
-    const contract = await hre.ethers.deployContract(CONTRACT_NAME);
-    await contract.waitForDeployment();
+  const moonCoinFactory = await hre.ethers.getContractFactory("MoonCoin");
+  const moonCoin = await moonCoinFactory.deploy(
+    NAME,
+    SYMBOL,
+    DECIMALS,
+    TOTAL_SUPPLY
+  );
 
-    console.log(`Deployed plending machine to ${contract.target}`);
-}
+  console.log(`Deployed MoonCoin to ${moonCoin.target}`);
+};
 
-main().catch(e => console.error(e))
+main().catch((e) => console.error(e));

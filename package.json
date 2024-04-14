@@ -2,8 +2,16 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.5",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "chai": "^4.4.1",
+    "dotenv": "^16.4.5",
     "ethers": "^6.11.1",
     "hardhat-deploy": "^0.11.45",
     "hardhat-deploy-ethers": "^0.4.1"
+  },
+  "scripts": {
+    "compile": "hardhat compile",
+    "serve": "hardhat node",
+    "dev": "hardhat run ./scripts/deploy.ts --network localhost",
+    "test": "hardhat test"
   }
 }
